@@ -3,10 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "bun run server/dev.ts",
+    "dev:next": "next dev",
+    "dev:server": "bun --watch run server/index.ts",
     "build": "next build",
+    "build:web": "STATIC_EXPORT=true next build",
+    "build:embed": "bun run server/scripts/embed-static.ts",
+    "build:bin": "STATIC_EXPORT=true next build && bun run server/scripts/embed-static.ts && mkdir -p build && bun build --compile --minify --bytecode server/index.ts --outfile build/app",
     "start": "next start",
-    "lint": "eslint"
+    "start:bin": "./build/app",
+    "lint": "eslint",
+    "server": "bun run server/index.ts",
+    "server:dev": "bun --watch run server/index.ts",
+    "db:setup": "bun run server/database/scheme.ts",
+    "db:seed": "bun run server/database/seeder.ts",
+    "test": "bun test --timeout 30000"
   },
   "dependencies": {
     "next": "16.4.3",

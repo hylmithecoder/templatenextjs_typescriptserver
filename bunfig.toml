@@ -1,0 +1,3 @@
+[test]
+# Integration suites can run migrations or spin up an ephemeral server.
+timeout = 30000
